@@ -37,8 +37,19 @@ class AddMovie extends Component {
     );
   }
 
+  textAreaGenerator(test, name, value) {
+    return (
+      <textarea
+        data-testid={ test }
+        name={ name }
+        value={ value }
+        onChange={ this.changeHandler }
+      />
+    );
+  }
+
   render() {
-    const { title, subtitle, imagePath } = this.state;
+    const { title, subtitle, imagePath, storyline } = this.state;
     return (
       <form data-testid="add-movie-form">
         <label htmlFor="title" data-testid="title-input-label">
@@ -52,6 +63,10 @@ class AddMovie extends Component {
         <label htmlFor="imagePath" data-testid="image-input-label">
           Imagem
           { this.inputsGenerator('image-input', 'text', 'imagePath', imagePath) }
+        </label>
+        <label htmlFor="storyline" data-testid="storyline-input-label">
+          Sinopse
+          { this.inputsGenerator('storyline-input', 'storyline', storyline) }
         </label>
       </form>
     );
