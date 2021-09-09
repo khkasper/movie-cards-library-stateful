@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class AddMovie extends Component {
   constructor() {
     super();
-
     this.state = {
       subtitle: '',
       title: '',
@@ -12,16 +11,29 @@ class AddMovie extends Component {
       rating: 0,
       genre: 'action',
     };
-
     this.changeHandler = this.changeHandler.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   changeHandler({ target }) {
     const { name, type } = target;
-    const value = type !== 'checkbox' ? target.value : target.checked;
-
+    const value = type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
+    });
+  }
+
+  clickHandler(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
     });
   }
 
@@ -30,6 +42,7 @@ class AddMovie extends Component {
       <input
         data-testid={ test }
         type={ type }
+        id={ name }
         name={ name }
         value={ value }
         onChange={ this.changeHandler }
@@ -42,6 +55,7 @@ class AddMovie extends Component {
       <textarea
         data-testid={ test }
         type={ type }
+        id={ name }
         name={ name }
         value={ value }
         onChange={ this.changeHandler }
@@ -49,12 +63,13 @@ class AddMovie extends Component {
     );
   }
 
-  selectOptions(value) {
+  selectOptions(test, type, name, value) {
     return (
       <select
-        data-testid="genre-input"
-        type="text"
-        name="genre"
+        data-testid={ test }
+        type={ type }
+        id={ name }
+        name={ name }
         value={ value }
         onChange={ this.changeHandler }
       >
@@ -91,8 +106,15 @@ class AddMovie extends Component {
         </label>
         <label htmlFor="genre" data-testid="genre-input-label">
           Gênero
-          { this.selectOptions(genre) }
+          { this.selectOptions('genre-input', 'text', 'genre', genre) }
         </label>
+        <button
+          type="submit"
+          onClick={ this.clickHandler }
+          data-testid="send-button"
+        >
+          Adicionar filme
+        </button>
       </form>
     );
   }
