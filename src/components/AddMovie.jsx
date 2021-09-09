@@ -37,10 +37,11 @@ class AddMovie extends Component {
     );
   }
 
-  textAreaGenerator(test, name, value) {
+  textAreaGenerator(test, type, name, value) {
     return (
       <textarea
         data-testid={ test }
+        type={ type }
         name={ name }
         value={ value }
         onChange={ this.changeHandler }
@@ -48,8 +49,24 @@ class AddMovie extends Component {
     );
   }
 
+  selectOptions(value) {
+    return (
+      <select
+        data-testid="genre-input"
+        type="text"
+        name="genre"
+        value={ value }
+        onChange={ this.changeHandler }
+      >
+        <option value="action" data-testid="genre-option">Ação</option>
+        <option value="comedy" data-testid="genre-option">Comédia</option>
+        <option value="thriller" data-testid="genre-option">Suspense</option>
+      </select>
+    );
+  }
+
   render() {
-    const { title, subtitle, imagePath, storyline, rating } = this.state;
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
         <label htmlFor="title" data-testid="title-input-label">
@@ -66,11 +83,15 @@ class AddMovie extends Component {
         </label>
         <label htmlFor="storyline" data-testid="storyline-input-label">
           Sinopse
-          { this.inputsGenerator('storyline-input', 'storyline', storyline) }
+          { this.textAreaGenerator('storyline-input', 'storyline', storyline) }
         </label>
         <label htmlFor="rating" data-testid="rating-input-label">
           Avaliação
           { this.inputsGenerator('rating-input', 'number', 'rating', rating) }
+        </label>
+        <label htmlFor="genre" data-testid="genre-input-label">
+          Gênero
+          { this.selectOptions(genre) }
         </label>
       </form>
     );
