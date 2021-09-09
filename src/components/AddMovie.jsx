@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const originalState = {
+  subtitle: '',
+  title: '',
+  imagePath: '',
+  storyline: '',
+  rating: 0,
+  genre: 'action',
+};
+
+const movieOptions = [
+  { value: 'action', text: 'Ação' },
+  { value: 'comedy', text: 'Comédia' },
+  { value: 'thriller', text: 'Suspense' },
+];
+
 class AddMovie extends Component {
   constructor() {
     super();
-    this.state = {
-      subtitle: '',
-      title: '',
-      imagePath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
-    };
+    this.state = originalState;
     this.changeHandler = this.changeHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
   }
@@ -28,14 +36,7 @@ class AddMovie extends Component {
     event.preventDefault();
     const { onClick } = this.props;
     onClick(this.state);
-    this.setState({
-      subtitle: '',
-      title: '',
-      imagePath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
-    });
+    this.setState(originalState);
   }
 
   inputsGenerator(test, type, name, value) {
@@ -65,6 +66,7 @@ class AddMovie extends Component {
   }
 
   selectOptions(test, type, name, value) {
+    const dataTestId = `${test.replace('-input', '')}-option`;
     return (
       <select
         data-testid={ test }
@@ -74,9 +76,11 @@ class AddMovie extends Component {
         value={ value }
         onChange={ this.changeHandler }
       >
-        <option value="action" data-testid="genre-option">Ação</option>
-        <option value="comedy" data-testid="genre-option">Comédia</option>
-        <option value="thriller" data-testid="genre-option">Suspense</option>
+        {movieOptions.map(({ value: genre, text }) => (
+          <option key={ genre } value={ genre } data-testid={ dataTestId }>
+            {text}
+          </option>
+        ))}
       </select>
     );
   }
