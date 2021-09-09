@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends Component {
   constructor() {
@@ -16,10 +17,10 @@ class AddMovie extends Component {
   }
 
   changeHandler({ target }) {
-    const { name, type } = target;
-    const value = type === 'checkbox' ? target.checked : target.value;
+    const { name, type, checked, value } = target;
+    const valueExpected = type === 'checkbox' ? checked : value;
     this.setState({
-      [name]: value,
+      [name]: valueExpected,
     });
   }
 
@@ -98,7 +99,7 @@ class AddMovie extends Component {
         </label>
         <label htmlFor="storyline" data-testid="storyline-input-label">
           Sinopse
-          { this.textAreaGenerator('storyline-input', 'storyline', storyline) }
+          { this.textAreaGenerator('storyline-input', 'text', 'storyline', storyline) }
         </label>
         <label htmlFor="rating" data-testid="rating-input-label">
           Avaliação
@@ -119,5 +120,7 @@ class AddMovie extends Component {
     );
   }
 }
+
+AddMovie.propTypes = { onClick: PropTypes.func.isRequired };
 
 export default AddMovie;
