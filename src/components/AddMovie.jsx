@@ -38,12 +38,16 @@ class AddMovie extends Component {
   }
 
   render() {
-    const { title } = this.state;
+    const { title, subtitle } = this.state;
     return (
       <form data-testid="add-movie-form">
         <label htmlFor="title" data-testid="title-input-label">
           Título
           { this.inputsGenerator('title-input', 'text', 'title', title) }
+        </label>
+        <label htmlFor="subtitle" data-testid="subtitle-input-label">
+          Subtítulo
+          { this.inputsGenerator('subtitle-input', 'text', 'subtitle', subtitle) }
         </label>
       </form>
     );
