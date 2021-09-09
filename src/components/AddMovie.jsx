@@ -38,7 +38,7 @@ class AddMovie extends Component {
   }
 
   render() {
-    const { title, subtitle } = this.state;
+    const { title, subtitle, imagePath } = this.state;
     return (
       <form data-testid="add-movie-form">
         <label htmlFor="title" data-testid="title-input-label">
@@ -49,9 +49,13 @@ class AddMovie extends Component {
           Subtítulo
           { this.inputsGenerator('subtitle-input', 'text', 'subtitle', subtitle) }
         </label>
+        <label htmlFor="imagePath" data-testid="image-input-label">
+          Imagem
+          { this.inputsGenerator('image-input', 'text', 'imagePath', imagePath) }
+        </label>
       </form>
     );
-  }
+  } 
 }
 
 export default AddMovie;
