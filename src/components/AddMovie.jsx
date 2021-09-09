@@ -8,7 +8,7 @@ class AddMovie extends Component {
       subtitle: '',
       title: '',
       imagePath: '',
-      storyLine: '',
+      storyline: '',
       rating: 0,
       genre: 'action',
     };
@@ -49,7 +49,7 @@ class AddMovie extends Component {
   }
 
   render() {
-    const { title, subtitle, imagePath, storyline } = this.state;
+    const { title, subtitle, imagePath, storyline, rating } = this.state;
     return (
       <form data-testid="add-movie-form">
         <label htmlFor="title" data-testid="title-input-label">
@@ -68,9 +68,13 @@ class AddMovie extends Component {
           Sinopse
           { this.inputsGenerator('storyline-input', 'storyline', storyline) }
         </label>
+        <label htmlFor="rating" data-testid="rating-input-label">
+          Avaliação
+          { this.inputsGenerator('rating-input', 'number', 'rating', rating) }
+        </label>
       </form>
     );
-  } 
+  }
 }
 
 export default AddMovie;
