@@ -14,3 +14,5 @@ function App() {
 }
 
 export default App;
+
+// Agradecimento ao Lucas Caribé da Turma 13 - Tribo B. Sa ajuda foi fundamental no processo de separar funções em novos componentes.
