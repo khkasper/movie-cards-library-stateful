@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TextInput from './TextInput';
+import SelectInput from './SelectInput';
+import CheckBox from './CheckBox';
+
+const movieOptions = [
+  { value: '', text: 'Todos' },
+  { value: 'action', text: 'Ação' },
+  { value: 'comedy', text: 'Comédia' },
+  { value: 'thriller', text: 'Suspense' },
+];
 
 class SearchBar extends Component {
   render() {
@@ -14,40 +24,29 @@ class SearchBar extends Component {
 
     return (
       <form data-testid="search-bar-form">
-        <label htmlFor="searchText" data-testid="text-input-label">
-          Inclui o texto:
-          <input
-            type="text"
-            name="searchText"
-            value={ searchText }
-            onChange={ onSearchTextChange }
-            data-testid="text-input"
-          />
-        </label>
-        <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
-          Mostrar somente favoritos
-          <input
-            type="checkbox"
-            name="bookmarkedOnly"
-            checked={ bookmarkedOnly }
-            onChange={ onBookmarkedChange }
-            data-testid="checkbox-input"
-          />
-        </label>
-        <label htmlFor="selectedGenre" data-testid="select-input-label">
-          Filtrar por gênero
-          <select
-            name="selectedGenre"
-            value={ selectedGenre }
-            onChange={ onSelectedGenreChange }
-            data-testid="select-input"
-          >
-            <option data-testid="select-option" value="">Todos</option>
-            <option data-testid="select-option" value="action">Ação</option>
-            <option data-testid="select-option" value="comedy">Comédia</option>
-            <option data-testid="select-option" value="thriller">Suspense</option>
-          </select>
-        </label>
+        <TextInput
+          content="Inclui o texto:"
+          name="searchText"
+          id="text-input"
+          value={ searchText }
+          onChange={ onSearchTextChange }
+        />
+        <CheckBox
+          content="Mostrar somente favoritos"
+          type="checkbox"
+          name="bookmarkedOnly"
+          id="checkbox-input"
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
+        />
+        <SelectInput
+          content="Filtrar por gênero"
+          name="genre"
+          id="select-input"
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+          options={ movieOptions }
+        />
       </form>
     );
   }

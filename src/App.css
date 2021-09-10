@@ -82,63 +82,58 @@ body {
   padding: 12px 20px;
 }
 
+form {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
 input {
   display: flex;
   flex-direction: column;
 }
 
-input[type=text], textarea, select {
-	font-family: Georgia, "Times New Roman", Times, serif;
-	margin: 5px;
+.textArea, .selectInput, .textInput {
+  background-color: #f6feff;
   border: none;
-	
-	padding: 10px;
-	width: 100%;
-	box-sizing: border-box; 
-	background-color: #f6feff;
-	color:#8a97a0;
-	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-	margin-bottom: 30px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-input[type=checkbox] {
-  border: none;
-  margin: 0 0 20px 10px;
-	display: inline-block;
-	position: relative;
-  background-color: #e9ecee;
-  color: #99a1a7;
-  width: 15px;
-  height: 15px;
-}
-
-input[type=number] {
-  border: none;
-  padding-left:10px;
-  width: 100px;
-  text-align:center;
-}
-
-select {
-  width: 100%;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  box-sizing: border-box;
+  color: #8a97a0;
+  font-family: Georgia , Times , sans-serif;
   justify-content: center;
+  margin: 5px;
+  margin-bottom: 30px;
+  padding: 10px;
+  width: 100%;
 }
 
-button[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+.checkbox {
+  background-color: #e9ecee;
+  border: none;
+  color: #99a1a7;
+  display: inline-block;
+  height: 15px;
+  margin: 0 0 20px 10px;
+  position: relative;
+  width: 15px;
+}
+
+.numberInput {
+  border: none;
+  padding-left: 10px;
+  text-align: center;
+  width: 100px;
+}
+
+button {
+  background-color: #4caf50;
   border: none;
   border-radius: 4px;
+  color: white;
   cursor: pointer;
+  margin: 8px 0;
+  padding: 14px 20px;
+  width: 100%;
 }
