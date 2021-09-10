@@ -7,7 +7,7 @@ class TextInput extends Component {
     let inputName = id.replace('-input', '');
     if (inputName === 'text') inputName = 'searchText';
     if (inputName === 'image') inputName = 'imagePath';
-    const inputClass = `input${type}`;
+    const inputClass = `${type}Input`;
 
     return (
       <label htmlFor={ id } data-testid={ `${id}-label` }>
